@@ -5,204 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Long-term proposal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f3efe6;
-      --card: #fffcf7;
-      --ink: #1c1915;
-      --muted: #5e584e;
-      --line: #ddd4c6;
-      --line-strong: #c9bfae;
-      --unknown: #8a6230;
-      --unknown-bg: #f4e4c8;
-      --question: #24456e;
-      --question-bg: #d7e3f2;
-      --notstarted: #5c574e;
-      --notstarted-bg: #e6e1d6;
-      --progress: #1d5c4e;
-      --progress-bg: #d2ebe3;
-      --blocked: #8c2e2a;
-      --blocked-bg: #f4d4d0;
-      --done: #24562f;
-      --done-bg: #d5ead6;
-      --proposed: #8a6230;
-      --deadline: #8c2e2a;
-      --today: #1c1915;
-      --shadow: 0 1px 0 rgba(28, 25, 21, 0.04);
-      --label: 15.5rem;
+      --ink: #111;
+      --muted: #666;
+      --line: #e4e4e4;
+      --bg: #fff;
+      --soft: #f6f6f6;
+      --unknown: #8a5a12;
+      --unknown-bg: #f6e7c8;
+      --question: #1d4e89;
+      --question-bg: #d9e6f5;
+      --notstarted: #444;
+      --notstarted-bg: #ececec;
+      --progress: #0f6e56;
+      --progress-bg: #d5efe6;
+      --blocked: #9d1c1c;
+      --blocked-bg: #f8d4d4;
+      --done: #1e6b32;
+      --done-bg: #d7efdc;
+      --label: 22rem;
     }
-
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: "Source Sans 3", "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.45;
+      font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.35;
     }
-    button, input, select { font: inherit; color: inherit; }
+    button, select { font: inherit; color: inherit; }
     button { cursor: pointer; }
-    h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 650; letter-spacing: -0.02em; margin: 0; }
+    h1, h2 { font-weight: 700; letter-spacing: 0; margin: 0; }
     p { margin: 0; }
+    .wrap { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+    header.top { padding: 1.4rem 0 0.6rem; }
+    .banner { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+    h1 { font-size: 1.6rem; margin: 0.3rem 0; }
+    .lede { color: var(--muted); max-width: 46rem; }
+    .howto { margin-top: 0.7rem; color: var(--muted); font-size: 13px; }
 
-    .wrap { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
-    header.top { padding: 1.75rem 0 1rem; }
-    .banner {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: baseline;
-      color: var(--muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    .people, .statuses { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; margin: 0.8rem 0 0.4rem; }
+    .people { margin-top: 1rem; }
+    .kicker { color: var(--muted); font-size: 12px; margin-right: 0.25rem; }
+    .chip, select {
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 4px;
+      padding: 0.22rem 0.5rem;
+      font-size: 13px;
     }
-    h1 { font-size: clamp(2rem, 4vw, 2.75rem); margin: 0.35rem 0 0.4rem; }
-    .lede { max-width: 42rem; color: var(--muted); }
+    .chip[aria-pressed="true"], .chip.pinned { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .swatch { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; margin-right: 0.3rem; }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin: 1.25rem 0 0.25rem;
-    }
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 0.75rem 0.9rem;
-      box-shadow: var(--shadow);
-      text-align: left;
-    }
-    .stat b { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.55rem; font-weight: 650; line-height: 1.1; }
-    .stat span { color: var(--muted); font-size: 0.82rem; }
-    .stat.alert b { color: var(--deadline); }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin: 1.1rem 0 1rem;
-      align-items: center;
-    }
-    .filters .group-label { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; margin-right: 0.15rem; }
-    .chip {
-      border: 1px solid var(--line-strong);
-      background: transparent;
-      border-radius: 999px;
-      padding: 0.28rem 0.7rem;
-      font-size: 0.86rem;
-    }
-    .chip[aria-pressed="true"] { background: var(--ink); color: #f7f3ea; border-color: var(--ink); }
-    .filters select {
-      border: 1px solid var(--line-strong);
-      background: var(--card);
-      border-radius: 8px;
-      padding: 0.28rem 0.45rem;
-    }
-    .chip .swatch {
-      display: inline-block;
-      width: 0.55rem;
-      height: 0.55rem;
-      border-radius: 50%;
-      margin-right: 0.35rem;
-      vertical-align: 0.05rem;
-    }
-
-    section { margin: 0 0 1.5rem; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      padding: 1rem 1rem 1.1rem;
-    }
-    .section-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin-bottom: 0.85rem; }
-    .section-head h2 { font-size: 1.35rem; }
-    .section-head p { color: var(--muted); font-size: 0.9rem; }
-
-    .gantt-scroll { overflow-x: auto; }
-    .gantt { min-width: 760px; position: relative; }
-    .scale, .grow {
-      display: grid;
-      grid-template-columns: var(--label) 1fr;
-      align-items: stretch;
-    }
-    .scale { margin-bottom: 0.25rem; color: var(--muted); font-size: 0.78rem; }
-    .scale-track, .track { position: relative; height: 100%; }
-    .scale-track { height: 2.4rem; }
-    .month, .mark-label {
-      position: absolute;
-      top: 0;
-      transform: translateX(-1px);
-      white-space: nowrap;
-    }
-    .mark-label { top: 1.15rem; font-size: 0.72rem; }
-    .mark-label.proposed { color: var(--proposed); }
-    .mark-label.deadline { color: var(--deadline); }
+    section { margin: 0.6rem 0 1.4rem; }
+    .gantt-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+    .gantt { min-width: 860px; }
+    .scale, .grow { display: grid; grid-template-columns: var(--label) 1fr; }
+    .scale { color: var(--muted); font-size: 12px; }
+    .scale-track, .track { position: relative; }
+    .scale-track { height: 2.6rem; }
+    .month, .mark-label { position: absolute; top: 0.15rem; white-space: nowrap; }
+    .mark-label { top: 1.25rem; font-size: 11px; }
+    .mark-label.proposed { color: #8a5a12; }
+    .mark-label.deadline { color: #9d1c1c; font-weight: 700; }
     .mark-label.today { color: var(--ink); font-weight: 700; }
 
-    .grow { min-height: 2.7rem; border-top: 1px solid var(--line); }
-    .grow:last-child { border-bottom: 1px solid var(--line); }
-    .task-label {
-      padding: 0.45rem 0.75rem 0.45rem 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.05rem;
+    .grow { border-bottom: 1px solid var(--line); min-height: 3.35rem; }
+    .grow.dim { opacity: 0.22; }
+    .grow.hot { background: var(--soft); }
+    .grow.hot .task-label { box-shadow: inset 3px 0 0 var(--ink); }
+    .task-label { padding: 0.45rem 0.8rem 0.45rem 0.7rem; display: flex; flex-direction: column; justify-content: center; gap: 0.12rem; }
+    .item {
+      background: none; border: 0; padding: 0; text-align: left; font-weight: 700;
     }
-    .task-label button {
-      background: none;
-      border: 0;
-      padding: 0;
-      text-align: left;
-      font-weight: 650;
-    }
-    .task-label button:hover { text-decoration: underline; }
-    .task-label small { color: var(--muted); font-size: 0.78rem; }
-    .track { min-height: 2.7rem; }
-    .gridline, .marker, .today-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      pointer-events: none;
-    }
-    .gridline { background: var(--line); }
-    .marker.proposed { background: var(--proposed); opacity: 0.85; }
-    .marker.deadline { background: var(--deadline); width: 2px; }
-    .today-line { background: var(--today); width: 2px; z-index: 2; }
+    .item:hover { text-decoration: underline; }
+    .meta { color: var(--muted); font-size: 12px; }
+    .rel { color: var(--ink); font-size: 12px; font-weight: 700; }
+    .track { min-height: 3.35rem; }
+    .gridline, .marker, .today-line { position: absolute; top: 0; bottom: 0; width: 1px; pointer-events: none; }
+    .gridline { background: #f0f0f0; }
+    .marker.proposed { background: #8a5a12; }
+    .marker.deadline { background: #9d1c1c; width: 2px; }
+    .today-line { background: var(--ink); width: 2px; z-index: 2; }
     .bar {
-      position: absolute;
-      top: 0.45rem;
-      height: 1.75rem;
-      border: 0;
-      border-radius: 6px;
-      padding: 0 0.55rem;
-      text-align: left;
-      font-size: 0.82rem;
-      font-weight: 650;
-      z-index: 1;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      position: absolute; top: 0.55rem; height: 2.15rem; border: 0; border-radius: 3px;
+      padding: 0 0.5rem; text-align: left; font-size: 12px; font-weight: 700;
+      z-index: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
     }
-    .bar:focus-visible, .task-label button:focus-visible, .row-btn:focus-visible, .chip:focus-visible {
-      outline: 2px solid var(--ink);
-      outline-offset: 2px;
+    .bar.open {
+      background-image: repeating-linear-gradient(-45deg, transparent, transparent 7px, rgba(255,255,255,0.55) 7px, rgba(255,255,255,0.55) 12px);
     }
+    .bar:focus-visible, .item:focus-visible, .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
-    .status-Unknown { background: var(--unknown-bg); color: var(--unknown); }
-    .status-Question { background: var(--question-bg); color: var(--question); }
-    .status-Not-started { background: var(--notstarted-bg); color: var(--notstarted); }
-    .status-In-progress { background: var(--progress-bg); color: var(--progress); }
-    .status-Blocked { background: var(--blocked-bg); color: var(--blocked); }
-    .status-Done { background: var(--done-bg); color: var(--done); }
+    .status-Unknown { background-color: var(--unknown-bg); color: var(--unknown); }
+    .status-Question { background-color: var(--question-bg); color: var(--question); }
+    .status-Not-started { background-color: var(--notstarted-bg); color: var(--notstarted); }
+    .status-In-progress { background-color: var(--progress-bg); color: var(--progress); }
+    .status-Blocked { background-color: var(--blocked-bg); color: var(--blocked); }
+    .status-Done { background-color: var(--done-bg); color: var(--done); }
     .swatch.status-Unknown { background: var(--unknown); }
     .swatch.status-Question { background: var(--question); }
     .swatch.status-Not-started { background: var(--notstarted); }
@@ -210,164 +112,56 @@
     .swatch.status-Blocked { background: var(--blocked); }
     .swatch.status-Done { background: var(--done); }
 
-    .nodate { display: grid; gap: 0.55rem; }
-    .pile { border-top: 1px solid var(--line); padding-top: 0.7rem; }
-    .pile h3 { font-size: 1rem; margin-bottom: 0.35rem; }
-    .open-row {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 0.75rem;
-      align-items: center;
-      text-align: left;
-      background: transparent;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      padding: 0.45rem 0;
-    }
-    .open-row:hover strong { text-decoration: underline; }
-    .open-row em { font-style: normal; color: var(--muted); font-size: 0.86rem; }
-    .pill {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 0.12rem 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
+    .people-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 0.4rem; }
+    .people-table th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 700; padding: 0.35rem 0.4rem; border-bottom: 1px solid #ccc; }
+    .people-table td { padding: 0.4rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .person-row.hot td { background: var(--soft); }
+    .person-row.dim td { opacity: 0.35; }
+    h2 { font-size: 1rem; margin: 1.2rem 0 0.2rem; }
+    .section-note { color: var(--muted); font-size: 13px; margin-bottom: 0.3rem; }
+    footer { color: var(--muted); font-size: 13px; padding: 0 0 2rem; }
 
-    .table-scroll { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-    th { text-align: left; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line-strong); }
-    td { padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-    tr.click:hover td { background: #f7f1e6; }
-    .row-btn { background: none; border: 0; padding: 0; font-weight: 650; text-align: left; }
-    .row-btn:hover { text-decoration: underline; }
-    .note { color: var(--muted); max-width: 28rem; }
-
-    .people td:nth-child(3) { max-width: 28rem; }
-    .empty { color: var(--muted); padding: 0.8rem 0; }
-
-    footer.note-foot { color: var(--muted); font-size: 0.88rem; padding: 0 0 2.5rem; }
-
-    dialog {
-      border: 1px solid var(--line-strong);
-      border-radius: 14px;
-      padding: 0;
-      width: min(36rem, calc(100% - 2rem));
-      background: var(--card);
-      color: var(--ink);
-    }
-    dialog::backdrop { background: rgba(28, 25, 21, 0.35); }
-    .dialog-body { padding: 1.1rem 1.2rem 1.2rem; }
-    dialog h2 { font-size: 1.45rem; margin-bottom: 0.35rem; }
-    .meta-line { color: var(--muted); margin-bottom: 0.8rem; }
-    dl { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.35rem 0.75rem; margin: 0; }
+    dialog { border: 1px solid #ccc; border-radius: 6px; padding: 0; width: min(36rem, calc(100% - 2rem)); }
+    dialog::backdrop { background: rgba(0,0,0,0.35); }
+    .dialog-body { padding: 1rem 1.1rem 1.1rem; }
+    dialog h2 { font-size: 1.15rem; margin-bottom: 0.3rem; }
+    .meta-line { color: var(--muted); margin-bottom: 0.7rem; }
+    dl { display: grid; grid-template-columns: 7rem 1fr; gap: 0.3rem 0.7rem; margin: 0; }
     dt { color: var(--muted); }
     dd { margin: 0; }
-    .close {
-      margin-top: 1rem;
-      border: 1px solid var(--line-strong);
-      background: var(--ink);
-      color: #f7f3ea;
-      border-radius: 8px;
-      padding: 0.4rem 0.8rem;
-    }
-    .err { padding: 2rem 0; }
+    .close { margin-top: 0.9rem; background: var(--ink); color: #fff; border: 0; border-radius: 4px; padding: 0.35rem 0.7rem; }
+    .empty { color: var(--muted); padding: 0.8rem 0; }
 
     @media (max-width: 800px) {
-      .stats { grid-template-columns: 1fr 1fr; }
-      :root { --label: 11rem; }
-      .open-row { grid-template-columns: 1fr; gap: 0.2rem; }
+      :root { --label: 13rem; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="top">
-      <div class="banner">
-        <span>Unpublished. This collaboration only.</span>
-        <span>Do not put images or quantification on this page.</span>
-      </div>
+      <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
       <h1>Long-term proposal</h1>
-      <p class="lede" id="lede">Filing deadline is Monday 18 January 2027, 5pm CET. The standing ESRF date is 15 January, and in 2027 that falls on a Friday, so it moves to the following Monday. A bar is drawn only when a task has a date.</p>
-      <div class="stats" id="stats"></div>
-      <div class="filters" id="filters"></div>
+      <p class="lede" id="lede"></p>
+      <p class="howto">Read top to bottom. Each row is one item. A striped bar has no date and runs across the whole window. Hover your name to see only your rows. Hover a row to see what comes before it and what it blocks.</p>
+      <div class="people" id="people"></div>
+      <div class="statuses" id="statuses"></div>
     </header>
-
     <section>
-      <div class="card">
-        <div class="section-head">
-          <h2>Through 18 January</h2>
-          <p id="chart-caption"></p>
-        </div>
-        <div class="gantt-scroll">
-          <div class="gantt" id="gantt"></div>
-        </div>
+      <div class="gantt-scroll">
+        <div class="gantt" id="gantt"></div>
       </div>
     </section>
-
-    <section>
-      <div class="card">
-        <div class="section-head">
-          <h2>No date yet</h2>
-          <p>These do not get a bar. Giving them one would invent a deadline.</p>
-        </div>
-        <div class="nodate" id="nodate"></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="card">
-        <div class="section-head">
-          <h2>Every item</h2>
-          <p>The confirmed deadline, the parallel proposal, and ERC Synergy are in this table only.</p>
-        </div>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Workstream</th>
-                <th>Task</th>
-                <th>Owner</th>
-                <th>Status</th>
-                <th>Waiting on</th>
-                <th>Needed by</th>
-              </tr>
-            </thead>
-            <tbody id="tbody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="card">
-        <div class="section-head">
-          <h2>People</h2>
-          <p>On the proposal list means proposed, not confirmed.</p>
-        </div>
-        <div class="table-scroll">
-          <table class="people">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Institution</th>
-                <th>Role</th>
-                <th>On the list?</th>
-              </tr>
-            </thead>
-            <tbody id="people"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <footer class="note-foot">
-      Recorded 1 Nov 2026. To change a row, edit tasks.json and push. The page reads that file. It does not store edits made in the browser.
-    </footer>
+    <h2>People</h2>
+    <p class="section-note">On the proposal list means proposed, not confirmed. Hover a name here too.</p>
+    <table class="people-table">
+      <thead>
+        <tr><th>Name</th><th>Institution</th><th>Role</th><th>On the list?</th></tr>
+      </thead>
+      <tbody id="people-body"></tbody>
+    </table>
+    <footer>Recorded 1 Nov 2026. To change a row, edit tasks.json and push.</footer>
   </div>
-
   <dialog id="detail">
     <div class="dialog-body">
       <h2 id="d-title"></h2>
@@ -376,13 +170,15 @@
       <button class="close" type="button" id="d-close">Close</button>
     </div>
   </dialog>
-
   <script>
     const STATUSES = ["Unknown", "Question", "Not started", "In progress", "Blocked", "Done"];
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    const filters = { status: "All", owner: "All", workstream: "All" };
     let data = null;
+    let ordered = [];
+    let statusFilter = "All";
+    let pinnedOwner = null;
+    let hoverOwner = null;
+    let hoverId = null;
 
     function parseDate(iso) {
       const [y, m, d] = iso.split("-").map(Number);
@@ -400,39 +196,6 @@
     function statusClass(status) {
       return "status-" + status.replace(/\s+/g, "-");
     }
-    function byId() {
-      const map = {};
-      data.tasks.forEach((task) => { map[task.id] = task; });
-      return map;
-    }
-    function titleOf(id, map) {
-      return map[id] ? map[id].title : id;
-    }
-    function waitingText(task, map) {
-      if (!task.waitingOn.length) return "Nothing";
-      return task.waitingOn.map((id) => titleOf(id, map)).join("; ");
-    }
-    function matches(task) {
-      if (filters.status !== "All" && task.status !== filters.status) return false;
-      if (filters.owner !== "All" && task.owner !== filters.owner) return false;
-      if (filters.workstream !== "All" && task.workstream !== filters.workstream) return false;
-      return true;
-    }
-    function onChart(task) {
-      return task.gantt !== false && task.due;
-    }
-    function barStart(task, map, today) {
-      const windowStart = parseDate(data.window.start);
-      let start = today > windowStart ? today : windowStart;
-      task.waitingOn.forEach((id) => {
-        const dep = map[id];
-        if (dep && dep.due) {
-          const due = parseDate(dep.due);
-          if (due > start) start = due;
-        }
-      });
-      return start;
-    }
     function el(tag, className, text) {
       const node = document.createElement(tag);
       if (className) node.className = className;
@@ -442,20 +205,115 @@
     function clear(node) {
       while (node.firstChild) node.removeChild(node.firstChild);
     }
+    function byId() {
+      const map = {};
+      data.tasks.forEach((task) => { map[task.id] = task; });
+      return map;
+    }
+    function flowOrder() {
+      const map = byId();
+      const sequence = [
+        "ltp-date",
+        "data-package",
+        "data-backup",
+        "data-analysis",
+        "meet-decision",
+        "ms-decision",
+        "ltp-esrf",
+        "ltp-resource",
+        "ltp-coi",
+        "ltp-aims",
+        "ltp-drafters",
+        "ltp-collect",
+        "safe-sop",
+        "safe-forms",
+        "ltp-draft",
+        "ltp-submit",
+        "other-standard",
+        "other-erc"
+      ];
+      const out = [];
+      const seen = new Set();
+      sequence.forEach((id) => {
+        if (map[id]) { out.push(map[id]); seen.add(id); }
+      });
+      data.tasks.forEach((task) => { if (!seen.has(task.id)) out.push(task); });
+      return out;
+    }
+    function visibleTasks() {
+      return ordered.filter((task) => statusFilter === "All" || task.status === statusFilter);
+    }
+    function namesIn(owner) {
+      return owner.split(" and ").map((part) => part.trim());
+    }
+    function owns(owner, person) {
+      return namesIn(owner).indexOf(person) !== -1 || owner === person;
+    }
+    function activeOwner() {
+      return hoverOwner || pinnedOwner;
+    }
+    function related(id) {
+      const map = byId();
+      const before = new Set();
+      const after = new Set();
+      function up(tid) {
+        (map[tid].waitingOn || []).forEach((pid) => {
+          if (map[pid] && !before.has(pid)) { before.add(pid); up(pid); }
+        });
+      }
+      function down(tid) {
+        data.tasks.forEach((task) => {
+          if (task.waitingOn.indexOf(tid) !== -1 && !after.has(task.id)) {
+            after.add(task.id);
+            down(task.id);
+          }
+        });
+      }
+      up(id);
+      down(id);
+      return { before: before, after: after };
+    }
+    function afterText(task, map) {
+      if (!task.waitingOn.length) return "";
+      return "After " + task.waitingOn.map((id) => map[id] ? map[id].title : id).join(", ");
+    }
+    function blocksText(task) {
+      const titles = data.tasks.filter((item) => item.waitingOn.indexOf(task.id) !== -1).map((item) => item.title);
+      if (!titles.length) return "";
+      return "Then " + titles.join(", ");
+    }
+    function geometry(task, map, today) {
+      const windowStart = parseDate(data.window.start);
+      const windowEnd = parseDate(data.window.end);
+      const span = windowEnd - windowStart;
+      const pos = (date) => ((date - windowStart) / span) * 100;
+      if (!task.due || parseDate(task.due) > windowEnd) {
+        return { open: true, left: 0, width: 100, outside: task.due ? fmt(parseDate(task.due)) : "" };
+      }
+      const due = parseDate(task.due);
+      let start = today > windowStart ? today : windowStart;
+      task.waitingOn.forEach((id) => {
+        const dep = map[id];
+        if (!dep || !dep.due) return;
+        const depDue = parseDate(dep.due);
+        if (depDue <= windowEnd && depDue > start) start = depDue;
+      });
+      if (start > due) start = due;
+      return { open: false, left: pos(start), width: Math.max(pos(due) - pos(start), 2), outside: "" };
+    }
 
     function openDetail(task) {
       const map = byId();
       document.getElementById("d-title").textContent = task.title;
-      document.getElementById("d-meta").textContent = task.workstream + " · " + task.owner;
+      document.getElementById("d-meta").textContent = task.workstream + " · " + task.owner + " · " + task.status;
       const list = document.getElementById("d-list");
       clear(list);
       const rows = [
-        ["Status", task.status],
-        ["Waiting on", waitingText(task, map)],
+        ["After", task.waitingOn.length ? task.waitingOn.map((id) => map[id] ? map[id].title : id).join("; ") : "Nothing"],
+        ["Then", blocksText(task).replace(/^Then /, "") || "Nothing"],
         ["Needed by", task.due ? fmt(parseDate(task.due)) : "No date"],
         ["Note", task.note],
-        ["Source", task.source],
-        ["Updated", task.updated || "Not updated yet"]
+        ["Source", task.source]
       ];
       rows.forEach(([term, value]) => {
         list.appendChild(el("dt", "", term));
@@ -464,77 +322,106 @@
       document.getElementById("detail").showModal();
     }
 
-    function renderStats(today) {
-      const stats = document.getElementById("stats");
-      clear(stats);
-      const deadline = data.markers.find((marker) => marker.kind === "deadline");
-      const deadlineDate = parseDate(deadline.date);
-      const blocks = [
-        [String(daysBetween(today, deadlineDate)), "days to " + deadline.label + ", 5pm CET"],
-        [String(data.tasks.filter((task) => task.status === "Unknown" || task.status === "Question").length), "unknown or still a question"],
-        [String(data.tasks.filter((task) => task.status === "Blocked").length), "blocked"]
-      ];
-      blocks.forEach(([num, label], index) => {
-        const card = el("div", index === 2 && num !== "0" ? "stat alert" : "stat");
-        card.appendChild(el("b", "", num));
-        card.appendChild(el("span", "", label));
-        stats.appendChild(card);
-      });
-    }
-
-    function renderFilters() {
-      const bar = document.getElementById("filters");
-      clear(bar);
-      const owners = ["All", ...new Set(data.tasks.map((task) => task.owner))];
-      const streams = ["All", ...new Set(data.tasks.map((task) => task.workstream))];
-      addFilter(bar, "Status", ["All", ...STATUSES], "status", true);
-      addSelect(bar, "Owner", owners, "owner");
-      addSelect(bar, "Work", streams, "workstream");
-    }
-
-    function addSelect(bar, label, values, key) {
-      bar.appendChild(el("span", "group-label", label));
-      const select = document.createElement("select");
-      select.setAttribute("aria-label", label);
-      values.forEach((value) => {
-        const option = el("option", "", value);
-        option.value = value;
-        if (filters[key] === value) option.selected = true;
-        select.appendChild(option);
-      });
-      select.addEventListener("change", () => {
-        filters[key] = select.value;
-        render();
-      });
-      bar.appendChild(select);
-    }
-
-    function addFilter(bar, label, values, key, withSwatch) {
-      bar.appendChild(el("span", "group-label", label));
-      values.forEach((value) => {
-        const button = el("button", "chip");
-        button.type = "button";
-        button.setAttribute("aria-pressed", filters[key] === value ? "true" : "false");
-        if (withSwatch && value !== "All") {
-          button.appendChild(el("span", "swatch " + statusClass(value)));
+    function paint() {
+      const owner = activeOwner();
+      const chain = hoverId ? related(hoverId) : null;
+      document.querySelectorAll(".grow").forEach((row) => {
+        const id = row.dataset.id;
+        const rowOwner = row.dataset.owner;
+        let hot = false;
+        let on = false;
+        if (chain) {
+          on = true;
+          hot = id === hoverId || chain.before.has(id) || chain.after.has(id);
+        } else if (owner) {
+          on = true;
+          hot = owns(rowOwner, owner);
         }
-        button.appendChild(document.createTextNode(value));
-        button.addEventListener("click", () => {
-          filters[key] = value;
-          render();
-        });
-        bar.appendChild(button);
+        row.classList.toggle("dim", on && !hot);
+        row.classList.toggle("hot", on && hot);
+        const tag = row.querySelector(".rel");
+        if (!chain || !hot || id === hoverId) tag.textContent = "";
+        else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
+      });
+      document.querySelectorAll(".person-row").forEach((row) => {
+        const name = row.dataset.name;
+        const on = Boolean(owner);
+        const hot = on && name === owner;
+        row.classList.toggle("dim", on && !hot);
+        row.classList.toggle("hot", hot);
+      });
+      document.querySelectorAll("#people .chip").forEach((chip) => {
+        const name = chip.dataset.name;
+        const pressed = name === "Everyone" ? !pinnedOwner && !hoverOwner : name === owner;
+        chip.setAttribute("aria-pressed", pressed ? "true" : "false");
+        chip.classList.toggle("pinned", name !== "Everyone" && name === pinnedOwner);
       });
     }
 
-    function renderGantt(today, map) {
+    function renderPeople() {
+      const bar = document.getElementById("people");
+      clear(bar);
+      bar.appendChild(el("span", "kicker", "People"));
+      const names = [];
+      data.people.forEach((person) => { if (names.indexOf(person.name) === -1) names.push(person.name); });
+      ["Unassigned", "Unknown"].forEach((name) => { if (names.indexOf(name) === -1) names.push(name); });
+      const everyone = el("button", "chip", "Everyone");
+      everyone.type = "button";
+      everyone.dataset.name = "Everyone";
+      everyone.addEventListener("click", () => { pinnedOwner = null; hoverOwner = null; paint(); });
+      bar.appendChild(everyone);
+      names.forEach((name) => {
+        const chip = el("button", "chip", name);
+        chip.type = "button";
+        chip.dataset.name = name;
+        chip.addEventListener("mouseenter", () => { hoverOwner = name; paint(); });
+        chip.addEventListener("mouseleave", () => { hoverOwner = null; paint(); });
+        chip.addEventListener("click", () => {
+          pinnedOwner = pinnedOwner === name ? null : name;
+          paint();
+        });
+        bar.appendChild(chip);
+      });
+
+      const body = document.getElementById("people-body");
+      clear(body);
+      data.people.forEach((person) => {
+        const row = el("tr", "person-row");
+        row.dataset.name = person.name;
+        [person.name, person.institution, person.role, person.list].forEach((value) => {
+          row.appendChild(el("td", "", value));
+        });
+        row.addEventListener("mouseenter", () => { hoverOwner = person.name; paint(); });
+        row.addEventListener("mouseleave", () => { hoverOwner = null; paint(); });
+        body.appendChild(row);
+      });
+    }
+
+    function renderStatuses() {
+      const bar = document.getElementById("statuses");
+      clear(bar);
+      bar.appendChild(el("span", "kicker", "Status"));
+      ["All"].concat(STATUSES).forEach((status) => {
+        const chip = el("button", "chip");
+        chip.type = "button";
+        chip.setAttribute("aria-pressed", statusFilter === status ? "true" : "false");
+        if (status !== "All") chip.appendChild(el("span", "swatch " + statusClass(status)));
+        chip.appendChild(document.createTextNode(status));
+        chip.addEventListener("click", () => { statusFilter = status; renderChart(); });
+        bar.appendChild(chip);
+      });
+    }
+
+    function renderChart() {
       const root = document.getElementById("gantt");
       clear(root);
-      const tasks = data.tasks.filter((task) => onChart(task) && matches(task));
+      const map = byId();
+      const today = startOfDay(new Date());
       const windowStart = parseDate(data.window.start);
       const windowEnd = parseDate(data.window.end);
       const span = windowEnd - windowStart;
       const pos = (date) => ((date - windowStart) / span) * 100;
+      const tasks = visibleTasks();
 
       const scale = el("div", "scale");
       scale.appendChild(el("div"));
@@ -560,18 +447,22 @@
       root.appendChild(scale);
 
       if (!tasks.length) {
-        root.appendChild(el("p", "empty", "No dated task matches this filter."));
+        root.appendChild(el("p", "empty", "Nothing matches this status."));
         return;
       }
 
-      tasks.forEach((task) => {
+      tasks.forEach((task, index) => {
         const row = el("div", "grow");
+        row.dataset.id = task.id;
+        row.dataset.owner = task.owner;
         const label = el("div", "task-label");
-        const name = el("button", "", task.title);
+        const name = el("button", "item", (index + 1) + ". " + task.title);
         name.type = "button";
         name.addEventListener("click", () => openDetail(task));
         label.appendChild(name);
-        label.appendChild(el("small", "", task.workstream));
+        const flow = [afterText(task, map), blocksText(task)].filter(Boolean).join(" · ");
+        if (flow) label.appendChild(el("div", "meta", flow));
+        label.appendChild(el("div", "rel", ""));
         row.appendChild(label);
 
         const track = el("div", "track");
@@ -584,7 +475,6 @@
         data.markers.forEach((marker) => {
           const line = el("span", "marker " + marker.kind);
           line.style.left = pos(parseDate(marker.date)) + "%";
-          line.title = marker.label + " — " + marker.detail;
           track.appendChild(line);
         });
         if (today >= windowStart && today <= windowEnd) {
@@ -592,128 +482,24 @@
           line.style.left = pos(today) + "%";
           track.appendChild(line);
         }
-
-        const start = barStart(task, map, today);
-        const due = parseDate(task.due);
-        const left = pos(start);
-        const width = Math.max(pos(due) - left, 2.2);
-        const bar = el("button", "bar " + statusClass(task.status), task.owner);
+        const box = geometry(task, map, today);
+        const barText = task.owner + (box.open ? (box.outside ? " · " + box.outside : " · No date") : "");
+        const bar = el("button", "bar " + statusClass(task.status) + (box.open ? " open" : ""), barText);
         bar.type = "button";
-        bar.style.left = left + "%";
-        bar.style.width = width + "%";
-        bar.title = task.owner + ". " + task.status + ".";
+        bar.style.left = box.left + "%";
+        bar.style.width = box.width + "%";
         bar.addEventListener("click", () => openDetail(task));
         track.appendChild(bar);
         row.appendChild(track);
+
+        row.addEventListener("mouseenter", () => { hoverId = task.id; paint(); });
+        row.addEventListener("mouseleave", () => { hoverId = null; paint(); });
         root.appendChild(row);
       });
+      paint();
     }
 
-    function renderNoDate(map) {
-      const root = document.getElementById("nodate");
-      clear(root);
-      const tasks = data.tasks.filter((task) => task.gantt !== false && !task.due && matches(task));
-      if (!tasks.length) {
-        root.appendChild(el("p", "empty", "No undated task matches this filter."));
-        return;
-      }
-      const groups = [];
-      tasks.forEach((task) => {
-        let group = groups.find((item) => item.name === task.workstream);
-        if (!group) {
-          group = { name: task.workstream, tasks: [] };
-          groups.push(group);
-        }
-        group.tasks.push(task);
-      });
-      groups.forEach((group) => {
-        const pile = el("div", "pile");
-        pile.appendChild(el("h3", "", group.name));
-        group.tasks.forEach((task) => {
-          const button = el("button", "open-row");
-          button.type = "button";
-          const text = el("span");
-          text.appendChild(el("strong", "", task.title));
-          button.appendChild(text);
-          button.appendChild(el("em", "", task.owner));
-          button.appendChild(el("span", "pill " + statusClass(task.status), task.status));
-          button.addEventListener("click", () => openDetail(task));
-          pile.appendChild(button);
-        });
-        root.appendChild(pile);
-      });
-    }
-
-    function renderTable(map) {
-      const body = document.getElementById("tbody");
-      clear(body);
-      const tasks = data.tasks.filter(matches);
-      if (!tasks.length) {
-        const row = document.createElement("tr");
-        const cell = el("td", "empty", "Nothing matches this filter.");
-        cell.colSpan = 6;
-        row.appendChild(cell);
-        body.appendChild(row);
-        return;
-      }
-      tasks.forEach((task) => {
-        const row = el("tr", "click");
-        row.tabIndex = 0;
-        row.addEventListener("click", () => openDetail(task));
-        row.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openDetail(task);
-          }
-        });
-        const values = [
-          task.workstream,
-          task.title,
-          task.owner,
-          task.status,
-          waitingText(task, map),
-          task.due ? fmt(parseDate(task.due)) : "No date"
-        ];
-        values.forEach((value, index) => {
-          const cell = document.createElement("td");
-          if (index === 3) {
-            cell.appendChild(el("span", "pill " + statusClass(task.status), value));
-          } else {
-            cell.textContent = value;
-          }
-          row.appendChild(cell);
-        });
-        body.appendChild(row);
-      });
-    }
-
-    function renderPeople() {
-      const body = document.getElementById("people");
-      clear(body);
-      data.people.forEach((person) => {
-        const row = document.createElement("tr");
-        [person.name, person.institution, person.role, person.list].forEach((value) => {
-          row.appendChild(el("td", "", value));
-        });
-        body.appendChild(row);
-      });
-    }
-
-    function render() {
-      const today = startOfDay(new Date());
-      const map = byId();
-      const dated = data.tasks.filter(onChart).length;
-      document.getElementById("chart-caption").textContent = dated + " dated " + (dated === 1 ? "task" : "tasks") + " on the chart. The rest are below.";
-      renderStats(today);
-      renderFilters();
-      renderGantt(today, map);
-      renderNoDate(map);
-      renderTable(map);
-    }
-
-    document.getElementById("d-close").addEventListener("click", () => {
-      document.getElementById("detail").close();
-    });
+    document.getElementById("d-close").addEventListener("click", () => document.getElementById("detail").close());
     document.getElementById("detail").addEventListener("click", (event) => {
       if (event.target.id === "detail") event.target.close();
     });
@@ -725,11 +511,16 @@
       })
       .then((json) => {
         data = json;
+        ordered = flowOrder();
+        const deadline = data.markers.find((marker) => marker.kind === "deadline");
+        const days = daysBetween(startOfDay(new Date()), parseDate(deadline.date));
+        document.getElementById("lede").textContent = days + " days to " + deadline.label + ", 5pm CET. The standing date is 15 January, and in 2027 that is a Friday, so filing moves to Monday.";
         renderPeople();
-        render();
+        renderStatuses();
+        renderChart();
       })
       .catch(() => {
-        document.querySelector("header.top").insertAdjacentElement("afterend", el("p", "err wrap", "The task file did not load. Open this page from the site, not as a loose file."));
+        document.querySelector("header.top").appendChild(el("p", "empty", "The task file did not load."));
       });
   </script>
 </body>
