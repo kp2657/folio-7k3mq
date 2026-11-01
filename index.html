@@ -104,13 +104,13 @@
     }
     .bar:focus-visible, .item:focus-visible, .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
-    .status-Unknown { background-color: var(--unknown-bg); color: var(--unknown); }
+    .status-Unassigned { background-color: var(--unknown-bg); color: var(--unknown); }
     .status-Question { background-color: var(--question-bg); color: var(--question); }
     .status-Not-started { background-color: var(--notstarted-bg); color: var(--notstarted); }
     .status-In-progress { background-color: var(--progress-bg); color: var(--progress); }
     .status-Blocked { background-color: var(--blocked-bg); color: var(--blocked); }
     .status-Done { background-color: var(--done-bg); color: var(--done); }
-    .swatch.status-Unknown { background: var(--unknown); }
+    .swatch.status-Unassigned { background: var(--unknown); }
     .swatch.status-Question { background: var(--question); }
     .swatch.status-Not-started { background: var(--notstarted); }
     .swatch.status-In-progress { background: var(--progress); }
@@ -161,7 +161,7 @@
     </div>
   </dialog>
   <script>
-    const STATUSES = ["Unknown", "Question", "Not started", "In progress", "Blocked", "Done"];
+    const STATUSES = ["Unassigned", "Question", "Not started", "In progress", "Blocked", "Done"];
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let data = null;
     let ordered = [];
@@ -375,7 +375,7 @@
       bar.appendChild(el("span", "kicker", "People"));
       const names = [];
       data.people.forEach((person) => { if (names.indexOf(person.name) === -1) names.push(person.name); });
-      ["Unassigned", "Unknown"].forEach((name) => { if (names.indexOf(name) === -1) names.push(name); });
+      ["Unassigned"].forEach((name) => { if (names.indexOf(name) === -1) names.push(name); });
       const everyone = el("button", "chip", "Everyone");
       everyone.type = "button";
       everyone.dataset.name = "Everyone";
