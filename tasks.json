@@ -1,0 +1,322 @@
+{
+  "asOf": "2026-11-01",
+  "window": { "start": "2026-11-01", "end": "2027-01-18" },
+  "markers": [
+    {
+      "date": "2026-12-22",
+      "label": "22 Dec draft",
+      "detail": "Proposed, not agreed",
+      "kind": "proposed"
+    },
+    {
+      "date": "2027-01-18",
+      "label": "18 Jan",
+      "detail": "Monday 18 Jan 2027, 5pm CET. Nominal date is 15 Jan; that is a Friday, so ESRF moves it to Monday.",
+      "kind": "deadline"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ltp-date",
+      "workstream": "LTP",
+      "title": "Deadline is Monday 18 January 2027, 5pm CET",
+      "owner": "Jenna Gregory",
+      "status": "Done",
+      "waitingOn": [],
+      "due": "2027-01-18",
+      "gantt": false,
+      "note": "Checked 1 Nov 2026 on esrf.fr. The standing deadline is 15 January at 5pm CET. If that date falls on a Friday, Saturday, or Sunday, it moves to the following Monday. 15 January 2027 is a Friday, so the filing deadline is Monday 18 January 2027 at 5pm CET. The year table on the site still lists the 2026 call and does not yet have a 2027 row. 10 January is not an ESRF date.",
+      "source": "esrf.fr/LTPProposal and the proposal deadlines page, checked 1 Nov 2026",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "ltp-coi",
+      "workstream": "LTP",
+      "title": "Lock the co-investigator list",
+      "owner": "Unassigned",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "The spokesperson must be at an institution in an ESRF member or associate country, and cannot be an ESRF scientist. Jenna has agreed to submit. Everyone else from the meetings is proposed, not confirmed.",
+      "source": "2 Oct 2026 minutes; set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "ltp-esrf",
+      "workstream": "LTP",
+      "title": "Ask ESRF management what a commitment looks like",
+      "owner": "Unknown",
+      "status": "Unknown",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "The 2 Oct action was to ask Montserrat who at ESRF management to approach, and Peter if needed. It is not known whether that conversation happened.",
+      "source": "2 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "ltp-resource",
+      "workstream": "LTP",
+      "title": "Write the resource-commitment paragraph",
+      "owner": "Unassigned",
+      "status": "Not started",
+      "waitingOn": ["ltp-esrf"],
+      "due": null,
+      "gantt": true,
+      "note": "The proposal has to say what the group gives ESRF: money, equipment, or staff. No one owns this paragraph yet.",
+      "source": "ESRF long-term proposal rules, copied 2 Oct 2026",
+      "updated": ""
+    },
+    {
+      "id": "ltp-aims",
+      "workstream": "LTP",
+      "title": "Agree the aims on one page",
+      "owner": "Unassigned",
+      "status": "Unknown",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "The 15 Oct minutes asked Magda, Jenna, and Pegah to scope co-culture before drafting. That assignment is not confirmed. A January to February 2027 beamtime is not written in as committed work.",
+      "source": "15 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "ltp-drafters",
+      "workstream": "LTP",
+      "title": "Name who drafts each section",
+      "owner": "Jenna Gregory",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Jenna files. The team writes. Section owners are not named yet.",
+      "source": "Set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "ltp-collect",
+      "workstream": "LTP",
+      "title": "Collect CVs, letters, and A-form material",
+      "owner": "Kenneth",
+      "status": "Not started",
+      "waitingOn": ["ltp-coi"],
+      "due": null,
+      "gantt": true,
+      "note": "Starts once the co-investigator list is locked.",
+      "source": "Set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "ltp-draft",
+      "workstream": "LTP",
+      "title": "Full draft for the team to read",
+      "owner": "Jenna Gregory",
+      "status": "Not started",
+      "waitingOn": ["ltp-aims", "ltp-resource", "ltp-coi", "meet-decision"],
+      "due": "2026-12-22",
+      "gantt": true,
+      "note": "22 December is a proposed review date, not an agreed one. The draft waits on the aims, the resource paragraph, the co-investigator list, and the decision meeting if the text cites the June run.",
+      "source": "Set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "ltp-submit",
+      "workstream": "LTP",
+      "title": "Submit the proposal and the A-forms",
+      "owner": "Jenna Gregory",
+      "status": "Not started",
+      "waitingOn": ["ltp-draft"],
+      "due": "2027-01-18",
+      "gantt": true,
+      "note": "Jenna submits. File by Monday 18 January 2027, 5pm CET. The nominal ESRF date is 15 January, and in 2027 that is a Friday, so the deadline moves to Monday.",
+      "source": "2 Oct 2026 minutes; 12 Oct 2026 guide",
+      "updated": ""
+    },
+    {
+      "id": "data-package",
+      "workstream": "Data",
+      "title": "Send the June package",
+      "owner": "Sylvain Bohic",
+      "status": "Unknown",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Images, cell and aggregate counts, and the Excel file for HEK, primary neurons, and SH-SY5Y. Unknown as of 1 Nov 2026. Sylvain was away until about 29 Oct.",
+      "source": "15 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "data-backup",
+      "workstream": "Data",
+      "title": "Confirm backups and download instructions",
+      "owner": "Sandra Macedo Ribeiro",
+      "status": "Unknown",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Sandra holds the main copy. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Sandra leads LS-3634. Yentli remains co-proposer.",
+      "source": "2 Oct 2026 minutes; set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "data-analysis",
+      "workstream": "Data",
+      "title": "Analyze the June run for the proposal",
+      "owner": "Unknown",
+      "status": "Blocked",
+      "waitingOn": ["data-package"],
+      "due": null,
+      "gantt": true,
+      "note": "Sandra was going to ask her student. Yentli was going to organize volunteers. Kenneth does not analyze.",
+      "source": "15 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "meet-decision",
+      "workstream": "Decision meeting",
+      "title": "Hold the meeting that decides how the June run is used",
+      "owner": "Yentli Soto Albrecht",
+      "status": "In progress",
+      "waitingOn": ["data-package"],
+      "due": null,
+      "gantt": true,
+      "note": "Yentli is scheduling this. There is no date. The 15 Oct agenda is the manuscript, the long-term proposal, and ERC Synergy.",
+      "source": "15 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "ms-decision",
+      "workstream": "Manuscript",
+      "title": "Name who decides whether the June observation goes in the manuscript",
+      "owner": "Unassigned",
+      "status": "Question",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "No owner yet. The 15 Oct meeting agreed the preprint is not held for these data. The zinc result is an observation from one run. The preprint window discussed then was December 2026 to January 2027.",
+      "source": "15 Oct 2026 minutes",
+      "updated": ""
+    },
+    {
+      "id": "safe-sop",
+      "workstream": "Safety",
+      "title": "Was SOP GLAB-BIOH-001 reviewed after 1 Sep 2026?",
+      "owner": "Unassigned",
+      "status": "Question",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "The Aberdeen SOP was due for review on 1 Sep 2026. It is not known whether that review happened.",
+      "source": "12 Oct 2026 guide",
+      "updated": ""
+    },
+    {
+      "id": "safe-forms",
+      "workstream": "Safety",
+      "title": "Who owns the ESRF safety declaration and Form A?",
+      "owner": "Unassigned",
+      "status": "Question",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Neither is on file for a next beamtime. It is not known who owns them, or whether they wait until a beamtime date exists.",
+      "source": "12 Oct 2026 guide",
+      "updated": ""
+    },
+    {
+      "id": "other-standard",
+      "workstream": "Other",
+      "title": "Decide whether to submit a regular ESRF proposal as well",
+      "owner": "Richard Ortega",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": null,
+      "gantt": false,
+      "note": "Richard owns this decision. It does not block the long-term proposal.",
+      "source": "15 Oct 2026 minutes; set 1 Nov 2026",
+      "updated": ""
+    },
+    {
+      "id": "other-erc",
+      "workstream": "Other",
+      "title": "ERC Synergy",
+      "owner": "Jenna Gregory and Yentli Soto Albrecht",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": "2027-05-01",
+      "gantt": false,
+      "note": "May 2027. Not scheduled. One row only, so it does not compress the chart.",
+      "source": "2 Oct 2026 minutes",
+      "updated": ""
+    }
+  ],
+  "people": [
+    {
+      "name": "Jenna Gregory",
+      "institution": "University of Aberdeen",
+      "role": "Spokesperson. Submits the proposal, the A-forms, and the reports. The team drafts.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Yentli Soto Albrecht",
+      "institution": "University of Pennsylvania",
+      "role": "Coordinator. Co-proposer on LS-3634. Scheduling the decision meeting.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Sandra Macedo Ribeiro",
+      "institution": "i3S, University of Porto",
+      "role": "Leads LS-3634. Holds the report and the main backup.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Sylvain Bohic",
+      "institution": "Inserm / ESRF ID16A",
+      "role": "June data package, beamline backup, and sample protocols.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Kenneth",
+      "institution": "University of Pennsylvania",
+      "role": "Admin only: this page, chasing, and collecting paperwork. Does not analyze, and does not decide authorship or sharing outside the team.",
+      "list": "No. Admin only."
+    },
+    {
+      "name": "Montserrat Soler Lopez",
+      "institution": "ESRF, Structural Biology",
+      "role": "Opened the collaboration. Route to ESRF management. An ESRF scientist cannot be spokesperson.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Peter Cloetens",
+      "institution": "ESRF, ID16A",
+      "role": "Beamline lead. An ESRF scientist cannot be spokesperson.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Richard Ortega",
+      "institution": "CNRS, University of Bordeaux",
+      "role": "Metal imaging. Decides whether a regular proposal is submitted in parallel.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Magdalini Polymenidou",
+      "institution": "University of Zurich",
+      "role": "TDP-43 seeding models, with Carlo Scialò.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Carlo Scialò",
+      "institution": "University of Zurich",
+      "role": "TDP-43 seeding models, with Magdalini Polymenidou.",
+      "list": "Proposed"
+    },
+    {
+      "name": "Pegah Masrori",
+      "institution": "KU Leuven",
+      "role": "Co-investigator on the consortium letters.",
+      "list": "Proposed"
+    }
+  ]
+}
