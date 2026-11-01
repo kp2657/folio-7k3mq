@@ -73,10 +73,13 @@
     .mark-label.today { color: var(--ink); font-weight: 700; }
 
     .grow { border-bottom: 1px solid var(--line); min-height: 3.35rem; }
+    .grow.group { min-height: 2.3rem; background: #f3f3f3; }
+    .grow.child .task-label { padding-left: 1.4rem; }
     .grow.dim { opacity: 0.22; }
     .grow.hot { background: var(--soft); }
     .grow.hot .task-label { box-shadow: inset 3px 0 0 var(--ink); }
     .task-label { padding: 0.45rem 0.8rem 0.45rem 0.7rem; display: flex; flex-direction: column; justify-content: center; gap: 0.12rem; }
+    .grow.group .item { font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; }
     .item {
       background: none; border: 0; padding: 0; text-align: left; font-weight: 700;
     }
@@ -136,7 +139,7 @@
       <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
       <h1>Long-term proposal</h1>
       <p class="lede" id="lede"></p>
-      <p class="howto">Read top to bottom. Each row is one item. A striped bar has no date and runs across the whole window. Hover your name to see only your rows. Hover a row to see what comes before it and what it blocks.</p>
+      <p class="howto">Each item sits under its goal. A striped bar has no date. Hover a name to see only that person's rows.</p>
       <div class="people" id="people"></div>
       <div class="statuses" id="statuses"></div>
     </header>
@@ -195,39 +198,24 @@
       data.tasks.forEach((task) => { map[task.id] = task; });
       return map;
     }
-    function flowOrder() {
+    function groupedTasks() {
       const map = byId();
-      const sequence = [
-        "ltp-date",
-        "meet-sandra",
-        "data-package",
-        "data-backup",
-        "data-analysis",
-        "meet-decision",
-        "ms-decision",
-        "ltp-esrf",
-        "ltp-resource",
-        "ltp-coi",
-        "ltp-aims",
-        "ltp-drafters",
-        "ltp-collect",
-        "safe-sop",
-        "safe-forms",
-        "ltp-draft",
-        "ltp-submit",
-        "other-standard",
-        "other-erc"
+      const groups = [
+        { id: "june", title: "June beamtime results", ids: ["data-package", "data-backup", "data-analysis", "meet-decision", "meet-sandra"] },
+        { id: "proposal", title: "Long-term proposal", ids: ["ltp-esrf", "ltp-resource", "ltp-coi", "ltp-aims", "ltp-drafters", "ltp-collect", "ltp-draft", "ltp-submit"] },
+        { id: "other", title: "Not on the filing path", ids: ["ms-decision", "safe-sop", "safe-forms", "other-standard", "other-erc"] }
       ];
-      const out = [];
       const seen = new Set();
-      sequence.forEach((id) => {
-        if (map[id]) { out.push(map[id]); seen.add(id); }
+      groups.forEach((group) => {
+        group.tasks = group.ids.map((id) => map[id]).filter(Boolean);
+        group.tasks.forEach((task) => seen.add(task.id));
       });
-      data.tasks.forEach((task) => { if (!seen.has(task.id)) out.push(task); });
-      return out;
+      const rest = data.tasks.filter((task) => !seen.has(task.id) && task.id !== "ltp-date");
+      if (rest.length) groups[groups.length - 1].tasks = groups[groups.length - 1].tasks.concat(rest);
+      return groups;
     }
-    function visibleTasks() {
-      return ordered.filter((task) => statusFilter === "All" || task.status === statusFilter);
+    function taskShown(task) {
+      return statusFilter === "All" || task.status === statusFilter;
     }
     function namesIn(owner) {
       return owner.split(" and ").map((part) => part.trim());
@@ -295,8 +283,8 @@
       const list = document.getElementById("d-list");
       clear(list);
       const rows = [
-        ["After", task.waitingOn.length ? task.waitingOn.map((id) => map[id] ? map[id].title : id).join("; ") : "Nothing"],
-        ["Then", blocksText(task).replace(/^Then /, "") || "Nothing"],
+        ["Waiting on", task.waitingOn.length ? task.waitingOn.map((id) => map[id] ? map[id].title : id).join("; ") : "Nothing"],
+        ["Blocks", blocksText(task).replace(/^Then /, "") || "Nothing"],
         ["Needed by", task.due ? fmt(parseDate(task.due)) : "No date"],
         ["Note", task.note],
         ["Source", task.source]
@@ -311,7 +299,8 @@
     function paint() {
       const owner = activeOwner();
       const chain = hoverId ? related(hoverId) : null;
-      document.querySelectorAll(".grow").forEach((row) => {
+      const hotGroups = new Set();
+      document.querySelectorAll(".grow.child").forEach((row) => {
         const id = row.dataset.id;
         const rowOwner = row.dataset.owner;
         let hot = false;
@@ -325,9 +314,19 @@
         }
         row.classList.toggle("dim", on && !hot);
         row.classList.toggle("hot", on && hot);
+        if (on && hot && row.dataset.group) hotGroups.add(row.dataset.group);
         const tag = row.querySelector(".rel");
-        if (!chain || !hot || id === hoverId) tag.textContent = "";
-        else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
+        if (tag) {
+          if (!chain || !hot || id === hoverId) tag.textContent = "";
+          else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
+        }
+      });
+      document.querySelectorAll(".grow.group").forEach((row) => {
+        const owner = activeOwner();
+        const on = Boolean(hoverId || owner);
+        const hot = hotGroups.has(row.dataset.group);
+        row.classList.toggle("dim", on && !hot);
+        row.classList.toggle("hot", on && hot);
       });
       document.querySelectorAll("#people .chip").forEach((chip) => {
         const name = chip.dataset.name;
@@ -387,7 +386,11 @@
       const windowEnd = parseDate(data.window.end);
       const span = windowEnd - windowStart;
       const pos = (date) => ((date - windowStart) / span) * 100;
-      const tasks = visibleTasks();
+      const groups = groupedTasks().map((group) => ({
+        id: group.id,
+        title: group.title,
+        tasks: group.tasks.filter(taskShown)
+      })).filter((group) => group.tasks.length);
 
       const scale = el("div", "scale");
       scale.appendChild(el("div"));
@@ -412,22 +415,30 @@
       scale.appendChild(scaleTrack);
       root.appendChild(scale);
 
-      if (!tasks.length) {
+      if (!groups.length) {
         root.appendChild(el("p", "empty", "Nothing matches this status."));
         return;
       }
 
-      tasks.forEach((task, index) => {
-        const row = el("div", "grow");
+      groups.forEach((group) => {
+        const head = el("div", "grow group");
+        head.dataset.group = group.id;
+        const headLabel = el("div", "task-label");
+        headLabel.appendChild(el("div", "item", group.title));
+        head.appendChild(headLabel);
+        head.appendChild(el("div", "track"));
+        root.appendChild(head);
+
+        group.tasks.forEach((task) => {
+        const row = el("div", "grow child");
         row.dataset.id = task.id;
         row.dataset.owner = task.owner;
+        row.dataset.group = group.id;
         const label = el("div", "task-label");
-        const name = el("button", "item", (index + 1) + ". " + task.title);
+        const name = el("button", "item", task.title);
         name.type = "button";
         name.addEventListener("click", () => openDetail(task));
         label.appendChild(name);
-        const flow = [afterText(task, map), blocksText(task)].filter(Boolean).join(" · ");
-        if (flow) label.appendChild(el("div", "meta", flow));
         label.appendChild(el("div", "rel", ""));
         row.appendChild(label);
 
@@ -461,6 +472,7 @@
         row.addEventListener("mouseenter", () => { hoverId = task.id; paint(); });
         row.addEventListener("mouseleave", () => { hoverId = null; paint(); });
         root.appendChild(row);
+        });
       });
       paint();
     }
@@ -477,7 +489,6 @@
       })
       .then((json) => {
         data = json;
-        ordered = flowOrder();
         const deadline = data.markers.find((marker) => marker.kind === "deadline");
         const days = daysBetween(startOfDay(new Date()), parseDate(deadline.date));
         document.getElementById("lede").textContent = days + " days to " + deadline.label + ", 5pm CET. The standing date is 15 January, and in 2027 that is a Friday, so filing moves to Monday.";
