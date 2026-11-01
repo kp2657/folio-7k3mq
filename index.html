@@ -74,7 +74,11 @@
 
     .grow { border-bottom: 1px solid var(--line); min-height: 3.35rem; }
     .grow.group { min-height: 2.3rem; background: #f3f3f3; }
-    .grow.child .task-label { padding-left: 1.4rem; }
+    .grow.sub .task-label { padding-left: 0.9rem; }
+    .grow.sub { min-height: 2rem; background: #fafafa; }
+    .grow.sub .item { font-size: 12px; font-weight: 700; text-transform: none; letter-spacing: 0; color: #333; }
+    .grow.child .task-label { padding-left: 1.5rem; }
+    .grow.child.under .task-label { padding-left: 2.6rem; }
     .grow.dim { opacity: 0.22; }
     .grow.hot { background: var(--soft); }
     .grow.hot .task-label { box-shadow: inset 3px 0 0 var(--ink); }
@@ -139,7 +143,7 @@
       <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
       <h1>Long-term proposal</h1>
       <p class="lede" id="lede"></p>
-      <p class="howto">Each item sits under its goal. A striped bar has no date. Hover a name to see only that person's rows.</p>
+      <p class="howto">The June results sit under the proposal because the draft depends on them. The backup is separate. A striped bar has no date. Hover a name to see only that person's rows.</p>
       <div class="people" id="people"></div>
       <div class="statuses" id="statuses"></div>
     </header>
@@ -200,19 +204,47 @@
     }
     function groupedTasks() {
       const map = byId();
-      const groups = [
-        { id: "june", title: "June beamtime results", ids: ["data-package", "data-backup", "data-analysis", "meet-decision", "meet-sandra"] },
-        { id: "proposal", title: "Long-term proposal", ids: ["ltp-esrf", "ltp-resource", "ltp-coi", "ltp-aims", "ltp-drafters", "ltp-collect", "ltp-draft", "ltp-submit"] },
-        { id: "other", title: "Not on the filing path", ids: ["ms-decision", "safe-sop", "safe-forms", "other-standard", "other-erc"] }
+      function rows(specs) {
+        return specs.map((spec) => {
+          const task = map[spec.id];
+          if (!task || !taskShown(task)) return null;
+          return { task: task, under: Boolean(spec.under) };
+        }).filter(Boolean);
+      }
+      return [
+        {
+          id: "proposal",
+          title: "Long-term proposal",
+          blocks: [
+            { title: "June results this proposal depends on", rows: rows([
+              { id: "data-package" },
+              { id: "data-analysis", under: true },
+              { id: "meet-decision", under: true }
+            ]) },
+            { title: "Backup, separate from those results", rows: rows([
+              { id: "data-backup" },
+              { id: "meet-sandra" }
+            ]) },
+            { title: "Writing and filing", rows: rows([
+              { id: "ltp-esrf" },
+              { id: "ltp-resource", under: true },
+              { id: "ltp-coi" },
+              { id: "ltp-collect", under: true },
+              { id: "ltp-aims" },
+              { id: "ltp-drafters" },
+              { id: "ltp-draft" },
+              { id: "ltp-submit", under: true }
+            ]) }
+          ]
+        },
+        {
+          id: "safety",
+          title: "Safety",
+          blocks: [
+            { title: "", rows: rows([{ id: "safe-sop" }, { id: "safe-forms" }]) }
+          ]
+        }
       ];
-      const seen = new Set();
-      groups.forEach((group) => {
-        group.tasks = group.ids.map((id) => map[id]).filter(Boolean);
-        group.tasks.forEach((task) => seen.add(task.id));
-      });
-      const rest = data.tasks.filter((task) => !seen.has(task.id) && task.id !== "ltp-date");
-      if (rest.length) groups[groups.length - 1].tasks = groups[groups.length - 1].tasks.concat(rest);
-      return groups;
     }
     function taskShown(task) {
       return statusFilter === "All" || task.status === statusFilter;
@@ -321,7 +353,7 @@
           else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
         }
       });
-      document.querySelectorAll(".grow.group").forEach((row) => {
+      document.querySelectorAll(".grow.group, .grow.sub").forEach((row) => {
         const owner = activeOwner();
         const on = Boolean(hoverId || owner);
         const hot = hotGroups.has(row.dataset.group);
@@ -389,8 +421,8 @@
       const groups = groupedTasks().map((group) => ({
         id: group.id,
         title: group.title,
-        tasks: group.tasks.filter(taskShown)
-      })).filter((group) => group.tasks.length);
+        blocks: group.blocks.filter((block) => block.rows.length)
+      })).filter((group) => group.blocks.length);
 
       const scale = el("div", "scale");
       scale.appendChild(el("div"));
@@ -429,8 +461,19 @@
         head.appendChild(el("div", "track"));
         root.appendChild(head);
 
-        group.tasks.forEach((task) => {
-        const row = el("div", "grow child");
+        group.blocks.forEach((block) => {
+          if (block.title) {
+            const sub = el("div", "grow sub");
+            sub.dataset.group = group.id;
+            const subLabel = el("div", "task-label");
+            subLabel.appendChild(el("div", "item", block.title));
+            sub.appendChild(subLabel);
+            sub.appendChild(el("div", "track"));
+            root.appendChild(sub);
+          }
+          block.rows.forEach((entry) => {
+        const task = entry.task;
+        const row = el("div", "grow child" + (entry.under ? " under" : ""));
         row.dataset.id = task.id;
         row.dataset.owner = task.owner;
         row.dataset.group = group.id;
@@ -472,6 +515,7 @@
         row.addEventListener("mouseenter", () => { hoverId = task.id; paint(); });
         row.addEventListener("mouseleave", () => { hoverId = null; paint(); });
         root.appendChild(row);
+          });
         });
       });
       paint();
