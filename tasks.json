@@ -134,6 +134,19 @@
       "updated": ""
     },
     {
+      "id": "meet-sandra",
+      "workstream": "Data",
+      "title": "Meet Sandra on proposer status, the report, and the backup",
+      "owner": "Kenneth",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": "2026-11-15",
+      "gantt": true,
+      "note": "The 12 Oct guide set this for mid-November. The report is filed under Sandra. Yentli is co-proposer. Who leads LS-3634 from here is not agreed in the notes. Ask Sandra.",
+      "source": "12 Oct 2026 guide",
+      "updated": ""
+    },
+    {
       "id": "data-package",
       "workstream": "Data",
       "title": "Send the June package",
@@ -155,7 +168,7 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "Sandra holds the main copy. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Sandra leads LS-3634. Yentli remains co-proposer.",
+      "note": "Sandra holds the main copy. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Yentli is co-proposer. Who leads LS-3634 from here is not agreed.",
       "source": "2 Oct 2026 minutes; set 1 Nov 2026",
       "updated": ""
     },
@@ -267,7 +280,7 @@
     {
       "name": "Sandra Macedo Ribeiro",
       "institution": "i3S, University of Porto",
-      "role": "Leads LS-3634. Holds the report and the main backup.",
+      "role": "Co-wrote the proposal. Holds the report and the main backup. Whether she leads LS-3634 from here is not agreed.",
       "list": "Proposed"
     },
     {

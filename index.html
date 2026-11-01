@@ -112,14 +112,7 @@
     .swatch.status-Blocked { background: var(--blocked); }
     .swatch.status-Done { background: var(--done); }
 
-    .people-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 0.4rem; }
-    .people-table th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 700; padding: 0.35rem 0.4rem; border-bottom: 1px solid #ccc; }
-    .people-table td { padding: 0.4rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-    .person-row.hot td { background: var(--soft); }
-    .person-row.dim td { opacity: 0.35; }
-    h2 { font-size: 1rem; margin: 1.2rem 0 0.2rem; }
-    .section-note { color: var(--muted); font-size: 13px; margin-bottom: 0.3rem; }
-    footer { color: var(--muted); font-size: 13px; padding: 0 0 2rem; }
+    footer { color: var(--muted); font-size: 13px; padding: 0.4rem 0 2rem; }
 
     dialog { border: 1px solid #ccc; border-radius: 6px; padding: 0; width: min(36rem, calc(100% - 2rem)); }
     dialog::backdrop { background: rgba(0,0,0,0.35); }
@@ -152,14 +145,6 @@
         <div class="gantt" id="gantt"></div>
       </div>
     </section>
-    <h2>People</h2>
-    <p class="section-note">On the proposal list means proposed, not confirmed. Hover a name here too.</p>
-    <table class="people-table">
-      <thead>
-        <tr><th>Name</th><th>Institution</th><th>Role</th><th>On the list?</th></tr>
-      </thead>
-      <tbody id="people-body"></tbody>
-    </table>
     <footer>Recorded 1 Nov 2026. To change a row, edit tasks.json and push.</footer>
   </div>
   <dialog id="detail">
@@ -214,6 +199,7 @@
       const map = byId();
       const sequence = [
         "ltp-date",
+        "meet-sandra",
         "data-package",
         "data-backup",
         "data-analysis",
@@ -343,13 +329,6 @@
         if (!chain || !hot || id === hoverId) tag.textContent = "";
         else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
       });
-      document.querySelectorAll(".person-row").forEach((row) => {
-        const name = row.dataset.name;
-        const on = Boolean(owner);
-        const hot = on && name === owner;
-        row.classList.toggle("dim", on && !hot);
-        row.classList.toggle("hot", hot);
-      });
       document.querySelectorAll("#people .chip").forEach((chip) => {
         const name = chip.dataset.name;
         const pressed = name === "Everyone" ? !pinnedOwner && !hoverOwner : name === owner;
@@ -381,19 +360,6 @@
           paint();
         });
         bar.appendChild(chip);
-      });
-
-      const body = document.getElementById("people-body");
-      clear(body);
-      data.people.forEach((person) => {
-        const row = el("tr", "person-row");
-        row.dataset.name = person.name;
-        [person.name, person.institution, person.role, person.list].forEach((value) => {
-          row.appendChild(el("td", "", value));
-        });
-        row.addEventListener("mouseenter", () => { hoverOwner = person.name; paint(); });
-        row.addEventListener("mouseleave", () => { hoverOwner = null; paint(); });
-        body.appendChild(row);
       });
     }
 
