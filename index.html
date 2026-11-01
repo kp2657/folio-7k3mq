@@ -74,11 +74,9 @@
 
     .grow { border-bottom: 1px solid var(--line); min-height: 3.35rem; }
     .grow.group { min-height: 2.3rem; background: #f3f3f3; }
-    .grow.sub .task-label { padding-left: 0.9rem; }
-    .grow.sub { min-height: 2rem; background: #fafafa; }
-    .grow.sub .item { font-size: 12px; font-weight: 700; text-transform: none; letter-spacing: 0; color: #333; }
-    .grow.child .task-label { padding-left: 1.5rem; }
-    .grow.child.under .task-label { padding-left: 2.6rem; }
+    .grow.child .task-label { padding-left: 0.85rem; }
+    .grow.d1 .task-label { margin-left: 1.15rem; padding-left: 0.7rem; box-shadow: inset 3px 0 0 #111; }
+    .grow.gap { margin-top: 0.7rem; }
     .grow.dim { opacity: 0.22; }
     .grow.hot { background: var(--soft); }
     .grow.hot .task-label { box-shadow: inset 3px 0 0 var(--ink); }
@@ -143,7 +141,7 @@
       <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
       <h1>Long-term proposal</h1>
       <p class="lede" id="lede"></p>
-      <p class="howto">The June results sit under the proposal because the draft depends on them. The backup is separate. A striped bar has no date. Hover a name to see only that person's rows.</p>
+      <p class="howto">An indented row depends on the row above it. A striped bar has no date. Hover a name to see only that person's rows.</p>
       <div class="people" id="people"></div>
       <div class="statuses" id="statuses"></div>
     </header>
@@ -208,7 +206,7 @@
         return specs.map((spec) => {
           const task = map[spec.id];
           if (!task || !taskShown(task)) return null;
-          return { task: task, under: Boolean(spec.under) };
+          return { task: task, depth: spec.depth || 0 };
         }).filter(Boolean);
       }
       return [
@@ -216,24 +214,24 @@
           id: "proposal",
           title: "Long-term proposal",
           blocks: [
-            { title: "June results this proposal depends on", rows: rows([
-              { id: "data-package" },
-              { id: "data-analysis", under: true },
-              { id: "meet-decision", under: true }
+            { rows: rows([
+              { id: "data-package", depth: 0 },
+              { id: "data-analysis", depth: 1 },
+              { id: "meet-decision", depth: 1 }
             ]) },
-            { title: "Backup, separate from those results", rows: rows([
-              { id: "data-backup" },
-              { id: "meet-sandra" }
+            { rows: rows([
+              { id: "meet-sandra", depth: 0 },
+              { id: "data-backup", depth: 1 }
             ]) },
-            { title: "Writing and filing", rows: rows([
-              { id: "ltp-esrf" },
-              { id: "ltp-resource", under: true },
-              { id: "ltp-coi" },
-              { id: "ltp-collect", under: true },
-              { id: "ltp-aims" },
-              { id: "ltp-drafters" },
-              { id: "ltp-draft" },
-              { id: "ltp-submit", under: true }
+            { rows: rows([
+              { id: "ltp-esrf", depth: 0 },
+              { id: "ltp-resource", depth: 1 },
+              { id: "ltp-coi", depth: 0 },
+              { id: "ltp-collect", depth: 1 },
+              { id: "ltp-aims", depth: 0 },
+              { id: "ltp-drafters", depth: 0 },
+              { id: "ltp-draft", depth: 0 },
+              { id: "ltp-submit", depth: 1 }
             ]) }
           ]
         },
@@ -241,7 +239,10 @@
           id: "safety",
           title: "Safety",
           blocks: [
-            { title: "", rows: rows([{ id: "safe-sop" }, { id: "safe-forms" }]) }
+            { rows: rows([
+              { id: "safe-sop", depth: 0 },
+              { id: "safe-forms", depth: 0 }
+            ]) }
           ]
         }
       ];
@@ -353,7 +354,7 @@
           else tag.textContent = chain.before.has(id) ? "Before this" : "After this";
         }
       });
-      document.querySelectorAll(".grow.group, .grow.sub").forEach((row) => {
+      document.querySelectorAll(".grow.group").forEach((row) => {
         const owner = activeOwner();
         const on = Boolean(hoverId || owner);
         const hot = hotGroups.has(row.dataset.group);
@@ -461,19 +462,10 @@
         head.appendChild(el("div", "track"));
         root.appendChild(head);
 
-        group.blocks.forEach((block) => {
-          if (block.title) {
-            const sub = el("div", "grow sub");
-            sub.dataset.group = group.id;
-            const subLabel = el("div", "task-label");
-            subLabel.appendChild(el("div", "item", block.title));
-            sub.appendChild(subLabel);
-            sub.appendChild(el("div", "track"));
-            root.appendChild(sub);
-          }
-          block.rows.forEach((entry) => {
+        group.blocks.forEach((block, blockIndex) => {
+          block.rows.forEach((entry, rowIndex) => {
         const task = entry.task;
-        const row = el("div", "grow child" + (entry.under ? " under" : ""));
+        const row = el("div", "grow child d" + entry.depth + (blockIndex > 0 && rowIndex === 0 ? " gap" : ""));
         row.dataset.id = task.id;
         row.dataset.owner = task.owner;
         row.dataset.group = group.id;
