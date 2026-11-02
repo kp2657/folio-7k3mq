@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-01",
+  "asOf": "2026-11-02",
   "window": { "start": "2026-11-01", "end": "2027-01-18" },
   "markers": [
     {
@@ -163,14 +163,53 @@
       "id": "data-analysis",
       "workstream": "Data",
       "title": "Analyze the June run for the proposal",
-      "owner": "Unassigned",
+      "owner": "Sandra",
       "status": "Blocked",
-      "waitingOn": ["data-package"],
+      "waitingOn": ["data-package", "analysis-brief"],
       "due": null,
       "gantt": true,
-      "note": "The mid-December draft exists so this can happen first. Who does it is still open. Sandra was going to ask her student. Yentli was going to organize volunteers. Kenneth does not analyze.",
-      "source": "15 Oct 2026 minutes",
-      "updated": ""
+      "note": "Sandra wrote on 2 Nov 2026. She suggested Sofia help her with some of the processing, with support from Sylvain. Sofia has not agreed. The processing still waits on the June file and on a description of what to do. Kenneth does not analyze.",
+      "source": "Sandra, 2 Nov 2026",
+      "updated": "2026-11-02"
+    },
+    {
+      "id": "analysis-brief",
+      "workstream": "Data",
+      "title": "Tell Sandra what the June processing needs to cover",
+      "owner": "Yentli",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Sandra wrote to Yentli on 2 Nov 2026 that she needs more information about what the processing has to do before she and Sofia can start.",
+      "source": "Sandra, 2 Nov 2026",
+      "updated": "2026-11-02"
+    },
+    {
+      "id": "ask-sofia",
+      "workstream": "Data",
+      "title": "Ask Sofia to help with the June processing",
+      "owner": "Sandra",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": "2026-11-03",
+      "gantt": true,
+      "note": "Sandra said on 2 Nov 2026 that she will try to contact Sofia the next day. Sofia would help Sandra with some of the processing, with support from Sylvain. Sofia has not agreed. Her last name was not in the email.",
+      "source": "Sandra, 2 Nov 2026",
+      "updated": "2026-11-02"
+    },
+    {
+      "id": "ask-sylvain",
+      "workstream": "Data",
+      "title": "Ask Sylvain about the next steps in the June processing",
+      "owner": "Sandra",
+      "status": "Not started",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Sandra said on 2 Nov 2026 that she will contact Sylvain this week. She plans to book time with him. No day was named.",
+      "source": "Sandra, 2 Nov 2026",
+      "updated": "2026-11-02"
     },
     {
       "id": "meet-decision",
@@ -254,7 +293,7 @@
     {
       "name": "Sandra",
       "institution": "i3S, University of Porto",
-      "role": "Has been coordinating this beamtime. Holds the report and the main backup. Not the agreed spokesperson for the HUB.",
+      "role": "Has been coordinating this beamtime. Will ask Sofia to help with June data processing, with support from Sylvain. Holds the report and the main backup.",
       "list": "Proposed"
     },
     {
@@ -298,6 +337,12 @@
       "institution": "University of Zurich",
       "role": "TDP-43 seeding models, with Magdalini.",
       "list": "Proposed"
+    },
+    {
+      "name": "Sofia",
+      "institution": "Not stated",
+      "role": "Sandra suggested she help with some of the June data processing. Not confirmed.",
+      "list": "No"
     },
     {
       "name": "Pegah",
