@@ -134,19 +134,6 @@
       "updated": ""
     },
     {
-      "id": "meet-sandra",
-      "workstream": "Data",
-      "title": "Ask Sandra for the backup",
-      "owner": "Kenneth",
-      "status": "Not started",
-      "waitingOn": [],
-      "due": "2026-11-15",
-      "gantt": true,
-      "note": "Yentli, 1 Nov 2026: Sandra has been coordinating this beamtime. That is not an agreement that she leads LS-3634, and it is not the HUB spokesperson role. The backup is still needed. The report is filed under Sandra. Yentli is co-proposer.",
-      "source": "12 Oct 2026 guide",
-      "updated": ""
-    },
-    {
       "id": "data-package",
       "workstream": "Data",
       "title": "Send the June images, counts, and Excel file",
@@ -165,7 +152,7 @@
       "title": "Confirm backups and download instructions",
       "owner": "Sandra Macedo Ribeiro",
       "status": "Unassigned",
-      "waitingOn": ["meet-sandra"],
+      "waitingOn": [],
       "due": null,
       "gantt": true,
       "note": "Sandra holds the main copy and has been coordinating this beamtime. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Yentli is co-proposer.",
@@ -241,12 +228,12 @@
       "id": "hub-email",
       "workstream": "HUB",
       "title": "Draft the note to the collaboration about the HUB application",
-      "owner": "Kenneth",
+      "owner": "Unassigned",
       "status": "Not started",
       "waitingOn": ["joanne-minutes"],
       "due": null,
       "gantt": true,
-      "note": "Yentli asked Kenneth to draft this after the Joanne minutes arrive. Do not send it before then. The application is pivoting from the long-term proposal to a HUB proposal.",
+      "note": "No one is assigned to draft this. It waits on the notes from the meeting with Joanne. The application is pivoting from the long-term proposal to a HUB proposal.",
       "source": "Yentli, 1 Nov 2026",
       "updated": "2026-11-01"
     }
