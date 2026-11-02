@@ -3,9 +3,9 @@
   "window": { "start": "2026-11-01", "end": "2027-01-18" },
   "markers": [
     {
-      "date": "2026-12-22",
-      "label": "22 Dec draft",
-      "detail": "Proposed, not agreed",
+      "date": "2026-12-15",
+      "label": "Mid-Dec draft",
+      "detail": "Yentli, 1 Nov 2026: mid-December or so, so there is time to analyze the June run. 15 December is the mid-month marker, not a locked day.",
       "kind": "proposed"
     },
     {
@@ -19,26 +19,26 @@
     {
       "id": "ltp-date",
       "workstream": "LTP",
-      "title": "Deadline is Monday 18 January 2027, 5pm CET",
-      "owner": "Jenna Gregory",
+      "title": "HUB filing deadline is Monday 18 January 2027, 5pm CET",
+      "owner": "Unassigned",
       "status": "Done",
       "waitingOn": [],
       "due": "2027-01-18",
       "gantt": false,
-      "note": "Checked 1 Nov 2026 on esrf.fr. The standing deadline is 15 January at 5pm CET. If that date falls on a Friday, Saturday, or Sunday, it moves to the following Monday. 15 January 2027 is a Friday, so the filing deadline is Monday 18 January 2027 at 5pm CET. The year table on the site still lists the 2026 call and does not yet have a 2027 row. 10 January is not an ESRF date.",
+      "note": "Checked 1 Nov 2026 on esrf.fr. HUB proposals and long-term proposals share the 15 January deadline at 5pm CET. If that date falls on a Friday, Saturday, or Sunday, it moves to the following Monday. 15 January 2027 is a Friday, so filing is Monday 18 January 2027 at 5pm CET. The year table on the site still lists the 2026 call.",
       "source": "esrf.fr/LTPProposal and the proposal deadlines page, checked 1 Nov 2026",
       "updated": "2026-11-01"
     },
     {
       "id": "ltp-coi",
       "workstream": "LTP",
-      "title": "Lock the co-investigator list",
+      "title": "Agree a balanced team for the HUB",
       "owner": "Unassigned",
       "status": "Not started",
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "The spokesperson must be at an institution in an ESRF member or associate country, and cannot be an ESRF scientist. Jenna has agreed to submit. Everyone else from the meetings is proposed, not confirmed.",
+      "note": "Yentli, 1 Nov 2026: because this is a HUB, the team has to be discussed so it is balanced. Not locked, and no one is assigned to run that discussion. The spokesperson must be at an ESRF member or associate institution and cannot be an ESRF scientist. The list needs at least three independent groups. Jenna has not agreed to be spokesperson.",
       "source": "2 Oct 2026 minutes; set 1 Nov 2026",
       "updated": ""
     },
@@ -51,7 +51,7 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "The 2 Oct action was to ask Montserrat who at ESRF management to approach, and Peter if needed. It is not known whether that conversation happened.",
+      "note": "A HUB has to be discussed with ESRF management and the beamline staff before it is filed. Asked 1 Nov 2026 whether Montserrat or Peter had been met. No answer yet.",
       "source": "2 Oct 2026 minutes",
       "updated": ""
     },
@@ -64,7 +64,7 @@
       "waitingOn": ["ltp-esrf"],
       "due": null,
       "gantt": true,
-      "note": "The proposal has to say what the group gives ESRF: money, equipment, or staff. No one owns this paragraph yet.",
+      "note": "This was the long-term proposal's resource paragraph. The application is now a HUB. Members commit to share knowledge, technology, beamtime data, and results before publication. Who writes that was not answered on 1 Nov 2026.",
       "source": "ESRF long-term proposal rules, copied 2 Oct 2026",
       "updated": ""
     },
@@ -90,7 +90,7 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "Jenna files. The team writes. Who names the section drafters is not assigned.",
+      "note": "The team writes. Who names the section drafters is not assigned. The spokesperson is not agreed.",
       "source": "Set 1 Nov 2026",
       "updated": ""
     },
@@ -113,36 +113,36 @@
       "title": "Full draft for the team to read",
       "owner": "Unassigned",
       "status": "Not started",
-      "waitingOn": ["ltp-aims", "ltp-resource", "ltp-coi", "meet-decision"],
-      "due": "2026-12-22",
+      "waitingOn": ["ltp-aims", "ltp-resource", "ltp-coi", "meet-decision", "data-analysis"],
+      "due": "2026-12-15",
       "gantt": true,
-      "note": "22 December is a proposed review date, not an agreed one. The draft waits on the aims, the resource paragraph, the co-investigator list, and the decision meeting if the text cites the June run.",
+      "note": "Yentli, 1 Nov 2026: mid-December or so, so there is time to analyze the June run. 15 December is the mid-month marker, not a locked day. No one owns the draft.",
       "source": "Set 1 Nov 2026",
       "updated": ""
     },
     {
       "id": "ltp-submit",
       "workstream": "LTP",
-      "title": "Submit the proposal and the A-forms",
-      "owner": "Jenna Gregory",
+      "title": "Submit the HUB proposal and the A-forms",
+      "owner": "Unassigned",
       "status": "Not started",
       "waitingOn": ["ltp-draft"],
       "due": "2027-01-18",
       "gantt": true,
-      "note": "Jenna submits. File by Monday 18 January 2027, 5pm CET. The nominal ESRF date is 15 January, and in 2027 that is a Friday, so the deadline moves to Monday.",
+      "note": "Yentli thinks Jenna will lead the next application through the HUB. Jenna has not agreed. The spokesperson files the HUB proposal, the first 6-month beamtime request, the A-forms, and later the annual reports. File by Monday 18 January 2027, 5pm CET.",
       "source": "2 Oct 2026 minutes; 12 Oct 2026 guide",
       "updated": ""
     },
     {
       "id": "meet-sandra",
       "workstream": "Data",
-      "title": "Ask Sandra for the backup and whether she leads LS-3634",
+      "title": "Ask Sandra for the backup",
       "owner": "Kenneth",
       "status": "Not started",
       "waitingOn": [],
       "due": "2026-11-15",
       "gantt": true,
-      "note": "The 12 Oct guide set this for mid-November. The report is filed under Sandra. Yentli is co-proposer. Who leads LS-3634 from here is not agreed in the notes. Ask Sandra.",
+      "note": "Yentli, 1 Nov 2026: Sandra has been coordinating this beamtime. That is not an agreement that she leads LS-3634, and it is not the HUB spokesperson role. The backup is still needed. The report is filed under Sandra. Yentli is co-proposer.",
       "source": "12 Oct 2026 guide",
       "updated": ""
     },
@@ -151,11 +151,11 @@
       "workstream": "Data",
       "title": "Send the June images, counts, and Excel file",
       "owner": "Sylvain Bohic",
-      "status": "Unassigned",
+      "status": "In progress",
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "Images, cell and aggregate counts, and the Excel file for HEK, primary neurons, and SH-SY5Y. Unknown as of 1 Nov 2026. Sylvain was away until about 29 Oct.",
+      "note": "Images, cell and aggregate counts, and the Excel file for HEK, primary neurons, and SH-SY5Y. Not sent as of 1 Nov 2026. Yentli sent Sylvain a follow-up email.",
       "source": "15 Oct 2026 minutes",
       "updated": ""
     },
@@ -168,7 +168,7 @@
       "waitingOn": ["meet-sandra"],
       "due": null,
       "gantt": true,
-      "note": "Sandra holds the main copy. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Yentli is co-proposer. Who leads LS-3634 from here is not agreed.",
+      "note": "Sandra holds the main copy and has been coordinating this beamtime. Sylvain was asked for a second copy on the beamline. Download instructions for the co-proposer are not confirmed. Yentli is co-proposer.",
       "source": "2 Oct 2026 minutes; set 1 Nov 2026",
       "updated": ""
     },
@@ -181,7 +181,7 @@
       "waitingOn": ["data-package"],
       "due": null,
       "gantt": true,
-      "note": "Sandra was going to ask her student. Yentli was going to organize volunteers. Kenneth does not analyze.",
+      "note": "The mid-December draft exists so this can happen first. Who does it is still open. Sandra was going to ask her student. Yentli was going to organize volunteers. Kenneth does not analyze.",
       "source": "15 Oct 2026 minutes",
       "updated": ""
     },
@@ -207,47 +207,73 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "The Aberdeen SOP was due for review on 1 Sep 2026. It is not known whether that review happened.",
+      "note": "The Aberdeen SOP was due for review on 1 Sep 2026. The 1 Nov reply said Sylvain filled out the ESRF safety declaration and Form A. It did not say this SOP was reviewed.",
       "source": "12 Oct 2026 guide",
       "updated": ""
     },
     {
       "id": "safe-forms",
       "workstream": "Safety",
-      "title": "Ask who owns the ESRF safety declaration and Form A",
-      "owner": "Unassigned",
-      "status": "Question",
+      "title": "ESRF safety declaration and Form A",
+      "owner": "Sylvain Bohic",
+      "status": "Done",
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "Neither is on file for a next beamtime. It is not known who owns them, or whether they wait until a beamtime date exists.",
+      "note": "Yentli, 1 Nov 2026: Sylvain filled these out. The same reply did not say whether Aberdeen reviewed SOP GLAB-BIOH-001.",
       "source": "12 Oct 2026 guide",
       "updated": ""
+    },
+    {
+      "id": "joanne-minutes",
+      "workstream": "HUB",
+      "title": "Send the notes from the meeting with Joanne",
+      "owner": "Yentli Soto Albrecht",
+      "status": "In progress",
+      "waitingOn": [],
+      "due": null,
+      "gantt": true,
+      "note": "Yentli met Joanne and will send Kenneth the minutes. Those notes are what the HUB message to the collaboration has to follow.",
+      "source": "Yentli, 1 Nov 2026",
+      "updated": "2026-11-01"
+    },
+    {
+      "id": "hub-email",
+      "workstream": "HUB",
+      "title": "Draft the note to the collaboration about the HUB application",
+      "owner": "Kenneth",
+      "status": "Not started",
+      "waitingOn": ["joanne-minutes"],
+      "due": null,
+      "gantt": true,
+      "note": "Yentli asked Kenneth to draft this after the Joanne minutes arrive. Do not send it before then. The application is pivoting from the long-term proposal to a HUB proposal.",
+      "source": "Yentli, 1 Nov 2026",
+      "updated": "2026-11-01"
     }
   ],
   "people": [
     {
       "name": "Jenna Gregory",
       "institution": "University of Aberdeen",
-      "role": "Spokesperson. Submits the proposal, the A-forms, and the reports. The team drafts.",
+      "role": "Yentli thinks she will lead the HUB application. Jenna has not agreed. If she does, she would submit the proposal, the A-forms, and the reports.",
       "list": "Proposed"
     },
     {
       "name": "Yentli Soto Albrecht",
       "institution": "University of Pennsylvania",
-      "role": "Coordinator. Co-proposer on LS-3634. Scheduling the decision meeting.",
+      "role": "Coordinator. Co-proposer on LS-3634. Sending the notes from the meeting with Joanne.",
       "list": "Proposed"
     },
     {
       "name": "Sandra Macedo Ribeiro",
       "institution": "i3S, University of Porto",
-      "role": "Co-wrote the proposal. Holds the report and the main backup. Whether she leads LS-3634 from here is not agreed.",
+      "role": "Has been coordinating this beamtime. Holds the report and the main backup. Not the agreed spokesperson for the HUB.",
       "list": "Proposed"
     },
     {
       "name": "Sylvain Bohic",
       "institution": "Inserm / ESRF ID16A",
-      "role": "June data package, beamline backup, and sample protocols.",
+      "role": "June data package, beamline backup, and sample protocols. Filled out the ESRF safety declaration and Form A. The June file is not sent yet.",
       "list": "Proposed"
     },
     {

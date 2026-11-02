@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Long-term proposal</title>
+  <title>HUB application</title>
   <style>
     :root {
       --ink: #111;
@@ -139,7 +139,7 @@
   <div class="wrap">
     <header class="top">
       <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
-      <h1>Long-term proposal</h1>
+      <h1>HUB application</h1>
       <p class="lede" id="lede"></p>
       <p class="howto">An indented row depends on the row above it. A striped bar has no date. Hover a name to see only that person's rows.</p>
       <div class="people" id="people"></div>
@@ -212,8 +212,12 @@
       return [
         {
           id: "proposal",
-          title: "Long-term proposal",
+          title: "HUB application",
           blocks: [
+            { rows: rows([
+              { id: "joanne-minutes", depth: 0 },
+              { id: "hub-email", depth: 1 }
+            ]) },
             { rows: rows([
               { id: "data-package", depth: 0 },
               { id: "data-analysis", depth: 1 },
@@ -527,7 +531,7 @@
         data = json;
         const deadline = data.markers.find((marker) => marker.kind === "deadline");
         const days = daysBetween(startOfDay(new Date()), parseDate(deadline.date));
-        document.getElementById("lede").textContent = days + " days to " + deadline.label + ", 5pm CET. The standing date is 15 January, and in 2027 that is a Friday, so filing moves to Monday.";
+        document.getElementById("lede").textContent = days + " days to " + deadline.label + ", 5pm CET. This replaces the long-term proposal. HUB uses the same 15 January date, and in 2027 that is a Friday, so filing moves to Monday. The draft is mid-December so the June run can be analyzed. Jenna has not agreed to lead.";
         renderPeople();
         renderStatuses();
         renderChart();
