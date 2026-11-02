@@ -77,7 +77,7 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "The 15 Oct minutes asked Magda, Jenna, and Pegah to scope co-culture before drafting. That assignment is not confirmed. A January to February 2027 beamtime is not written in as committed work.",
+      "note": "The 15 Oct minutes asked Magdalini, Jenna, and Pegah to scope co-culture before drafting. That assignment is not confirmed. A January to February 2027 beamtime is not written in as committed work.",
       "source": "15 Oct 2026 minutes",
       "updated": ""
     },
@@ -137,7 +137,7 @@
       "id": "data-package",
       "workstream": "Data",
       "title": "Send the June images, counts, and Excel file",
-      "owner": "Sylvain Bohic",
+      "owner": "Sylvain",
       "status": "In progress",
       "waitingOn": [],
       "due": null,
@@ -150,7 +150,7 @@
       "id": "data-backup",
       "workstream": "Data",
       "title": "Confirm backups and download instructions",
-      "owner": "Sandra Macedo Ribeiro",
+      "owner": "Sandra",
       "status": "Unassigned",
       "waitingOn": [],
       "due": null,
@@ -176,7 +176,7 @@
       "id": "meet-decision",
       "workstream": "Decision meeting",
       "title": "Ask how the June results will be used",
-      "owner": "Yentli Soto Albrecht",
+      "owner": "Yentli",
       "status": "In progress",
       "waitingOn": ["data-package"],
       "due": null,
@@ -202,7 +202,7 @@
       "id": "safe-forms",
       "workstream": "Safety",
       "title": "ESRF safety declaration and Form A",
-      "owner": "Sylvain Bohic",
+      "owner": "Sylvain",
       "status": "Done",
       "waitingOn": [],
       "due": null,
@@ -215,7 +215,7 @@
       "id": "joanne-minutes",
       "workstream": "HUB",
       "title": "Send the notes from the meeting with Joanne",
-      "owner": "Yentli Soto Albrecht",
+      "owner": "Yentli",
       "status": "In progress",
       "waitingOn": [],
       "due": null,
@@ -240,25 +240,25 @@
   ],
   "people": [
     {
-      "name": "Jenna Gregory",
+      "name": "Jenna",
       "institution": "University of Aberdeen",
       "role": "Yentli thinks she will lead the HUB application. Jenna has not agreed. If she does, she would submit the proposal, the A-forms, and the reports.",
       "list": "Proposed"
     },
     {
-      "name": "Yentli Soto Albrecht",
+      "name": "Yentli",
       "institution": "University of Pennsylvania",
       "role": "Coordinator. Co-proposer on LS-3634. Sending the notes from the meeting with Joanne.",
       "list": "Proposed"
     },
     {
-      "name": "Sandra Macedo Ribeiro",
+      "name": "Sandra",
       "institution": "i3S, University of Porto",
       "role": "Has been coordinating this beamtime. Holds the report and the main backup. Not the agreed spokesperson for the HUB.",
       "list": "Proposed"
     },
     {
-      "name": "Sylvain Bohic",
+      "name": "Sylvain",
       "institution": "Inserm / ESRF ID16A",
       "role": "June data package, beamline backup, and sample protocols. Filled out the ESRF safety declaration and Form A. The June file is not sent yet.",
       "list": "Proposed"
@@ -270,37 +270,37 @@
       "list": "No. Admin only."
     },
     {
-      "name": "Montserrat Soler Lopez",
+      "name": "Montserrat",
       "institution": "ESRF, Structural Biology",
       "role": "Opened the collaboration. Route to ESRF management. An ESRF scientist cannot be spokesperson.",
       "list": "Proposed"
     },
     {
-      "name": "Peter Cloetens",
+      "name": "Peter",
       "institution": "ESRF, ID16A",
       "role": "Beamline lead. An ESRF scientist cannot be spokesperson.",
       "list": "Proposed"
     },
     {
-      "name": "Richard Ortega",
+      "name": "Richard",
       "institution": "CNRS, University of Bordeaux",
       "role": "Metal imaging.",
       "list": "Proposed"
     },
     {
-      "name": "Magdalini Polymenidou",
+      "name": "Magdalini",
       "institution": "University of Zurich",
-      "role": "TDP-43 seeding models, with Carlo Scialò.",
+      "role": "TDP-43 seeding models, with Carlo.",
       "list": "Proposed"
     },
     {
-      "name": "Carlo Scialò",
+      "name": "Carlo",
       "institution": "University of Zurich",
-      "role": "TDP-43 seeding models, with Magdalini Polymenidou.",
+      "role": "TDP-43 seeding models, with Magdalini.",
       "list": "Proposed"
     },
     {
-      "name": "Pegah Masrori",
+      "name": "Pegah",
       "institution": "KU Leuven",
       "role": "Co-investigator on the consortium letters.",
       "list": "Proposed"
