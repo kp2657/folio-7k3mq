@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>HUB application</title>
+  <title>Tracker</title>
   <style>
     :root {
       --ink: #111;
@@ -138,9 +138,6 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <div class="banner">Unpublished. This collaboration only. Do not put images or quantification on this page.</div>
-      <h1>HUB application</h1>
-      <p class="lede" id="lede"></p>
       <p class="howto">An indented row depends on the row above it. A striped bar has no date. Hover a name to see only that person's rows.</p>
       <div class="people" id="people"></div>
       <div class="statuses" id="statuses"></div>
@@ -150,7 +147,6 @@
         <div class="gantt" id="gantt"></div>
       </div>
     </section>
-    <footer>Recorded 1 Nov 2026. To change a row, edit tasks.json and push.</footer>
   </div>
   <dialog id="detail">
     <div class="dialog-body">
@@ -212,7 +208,7 @@
       return [
         {
           id: "proposal",
-          title: "HUB application",
+          title: "",
           blocks: [
             { rows: rows([
               { id: "joanne-minutes", depth: 0 },
@@ -457,13 +453,15 @@
       }
 
       groups.forEach((group) => {
-        const head = el("div", "grow group");
-        head.dataset.group = group.id;
-        const headLabel = el("div", "task-label");
-        headLabel.appendChild(el("div", "item", group.title));
-        head.appendChild(headLabel);
-        head.appendChild(el("div", "track"));
-        root.appendChild(head);
+        if (group.title) {
+          const head = el("div", "grow group");
+          head.dataset.group = group.id;
+          const headLabel = el("div", "task-label");
+          headLabel.appendChild(el("div", "item", group.title));
+          head.appendChild(headLabel);
+          head.appendChild(el("div", "track"));
+          root.appendChild(head);
+        }
 
         group.blocks.forEach((block, blockIndex) => {
           block.rows.forEach((entry, rowIndex) => {
@@ -528,9 +526,6 @@
       })
       .then((json) => {
         data = json;
-        const deadline = data.markers.find((marker) => marker.kind === "deadline");
-        const days = daysBetween(startOfDay(new Date()), parseDate(deadline.date));
-        document.getElementById("lede").textContent = days + " days to " + deadline.label + ", 5pm CET. This replaces the long-term proposal. HUB uses the same 15 January date, and in 2027 that is a Friday, so filing moves to Monday. The draft is mid-December so the June run can be analyzed. Jenna has not agreed to lead.";
         renderPeople();
         renderStatuses();
         renderChart();

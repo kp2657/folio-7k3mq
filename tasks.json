@@ -188,13 +188,13 @@
     {
       "id": "safe-sop",
       "workstream": "Safety",
-      "title": "Ask whether SOP GLAB-BIOH-001 was reviewed after 1 Sep 2026",
-      "owner": "Unassigned",
-      "status": "Question",
+      "title": "SOP GLAB-BIOH-001",
+      "owner": "Sylvain",
+      "status": "Done",
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "The Aberdeen SOP was due for review on 1 Sep 2026. The 1 Nov reply said Sylvain filled out the ESRF safety declaration and Form A. It did not say this SOP was reviewed.",
+      "note": "Yentli, 1 Nov 2026: Sylvain filled it out. The SOP had been due for review on 1 Sep 2026.",
       "source": "12 Oct 2026 guide",
       "updated": ""
     },
@@ -207,7 +207,7 @@
       "waitingOn": [],
       "due": null,
       "gantt": true,
-      "note": "Yentli, 1 Nov 2026: Sylvain filled these out. The same reply did not say whether Aberdeen reviewed SOP GLAB-BIOH-001.",
+      "note": "Yentli, 1 Nov 2026: Sylvain filled these out.",
       "source": "12 Oct 2026 guide",
       "updated": ""
     },
@@ -227,7 +227,7 @@
     {
       "id": "hub-email",
       "workstream": "HUB",
-      "title": "Draft the note to the collaboration about the HUB application",
+      "title": "Draft the note to the collaboration",
       "owner": "Unassigned",
       "status": "Not started",
       "waitingOn": ["joanne-minutes"],
@@ -242,7 +242,7 @@
     {
       "name": "Jenna",
       "institution": "University of Aberdeen",
-      "role": "Yentli thinks she will lead the HUB application. Jenna has not agreed. If she does, she would submit the proposal, the A-forms, and the reports.",
+      "role": "Yentli thinks she will lead. Jenna has not agreed. If she does, she would submit the proposal, the A-forms, and the reports.",
       "list": "Proposed"
     },
     {
@@ -260,7 +260,7 @@
     {
       "name": "Sylvain",
       "institution": "Inserm / ESRF ID16A",
-      "role": "June data package, beamline backup, and sample protocols. Filled out the ESRF safety declaration and Form A. The June file is not sent yet.",
+      "role": "June data package, beamline backup, and sample protocols. Filled out SOP GLAB-BIOH-001, the ESRF safety declaration, and Form A. The June file is not sent yet.",
       "list": "Proposed"
     },
     {
